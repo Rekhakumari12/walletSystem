@@ -9,4 +9,14 @@ describe("lengthOfLine", () => {
     const distance2 = getLength(100, 10, 400, 400);
     expect(distance2).toEqual(90);
   });
+
+  it("should return valid length for given negative x coordinate", () => {
+    const distance = getLength(-100, 10, 400, 400);
+    expect(distance).toEqual(110);
+  });
+
+  it("should return valid length for given negative y coordinate", () => {
+    const distance = getLength(0, 0, -400, 400);
+    expect(distance).toEqual(800);
+  });
 });
