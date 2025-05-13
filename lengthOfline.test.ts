@@ -2,6 +2,7 @@ import { describe, it, expect } from "@jest/globals";
 import { getLength } from "./lengthOfLine";
 
 // sqrt ( (x2-x1)^2 + (y2-y1)^2 )
+// find out are line parallel, perpendicular, intersecting
 describe("lengthOfLine", () => {
   it("should return the length for given x and y coordinates", () => {
     const distance = getLength(0, 0, 4, 4);
