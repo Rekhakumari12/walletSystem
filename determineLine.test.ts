@@ -1,7 +1,17 @@
 import { describe, it, expect } from "@jest/globals";
 import { determineLine, Line } from "./determineLine";
 
+// area or square, rectangle, trapezoid
 describe("determineLine", () => {
+  it("should return the length for given x and y coordinates", () => {
+    const line1: Line = [
+      { x: 0, y: 0 },
+      { x: 100, y: 100 },
+    ];
+    const value = determineLine(line1);
+    expect(value).toEqual(0);
+  });
+
   it("should identify perpendicular lines", () => {
     const line1: Line = [
       { x: 0, y: 0 },

@@ -1,6 +1,21 @@
 type Point = { x: number; y: number };
 export type Line = [Point, Point];
 
+const defaultLine = [
+  { x: 0, y: 0 },
+  { x: 0, y: 0 },
+];
+
+export const getLength = (line: Line): number => {
+  const [p1, p2] = line;
+  const { x: x1, y: y1 } = p1;
+  const { x: x2, y: y2 } = p2;
+  const x = x2 - x1;
+  const y = y2 - y1;
+
+  return Math.sqrt(x * x + y * y);
+};
+
 const calculateSlope = (p1: Point, p2: Point): number =>
   p1.x === p2.x ? Infinity : (p2.y - p1.y) / (p2.x - p1.x);
 
@@ -23,7 +38,6 @@ const onSegment = (p: Point, q: Point, r: Point): boolean =>
   q.x <= Math.max(p.x, r.x) &&
   Math.min(p.y, r.y) <= q.y &&
   q.y <= Math.max(p.y, r.y);
-
 
 const isParallel = (line1: Line, line2: Line): boolean =>
   areSlopesEqual(calculateSlope(...line1), calculateSlope(...line2));
@@ -51,9 +65,12 @@ const isIntersecting = (line1: Line, line2: Line): boolean => {
   );
 };
 
-export const determineLine = (line1: Line, line2: Line): string => {
+export const determineLine = (line1: Line, line2?: Line): string | number => {
   let relation: string;
 
+  if (getLength(line1)) {
+    return getLength(line1);
+  }
   if (isPerpendicular(line1, line2)) {
     relation = "perpendicular";
   } else if (isParallel(line1, line2)) {
